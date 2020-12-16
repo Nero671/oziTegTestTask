@@ -70,6 +70,7 @@ const showMobileMenu = () => {
   const burger = document.getElementById('burger');
   const leftMenu = document.querySelector('.left-menu');
   const dropDown = document.querySelectorAll('.dropdown');
+  const dropdownInner = document.querySelectorAll('.dropdown-inner')
 
   const changeArrow = e => {
     if(e.target.closest('.fa-angle-down')) {
@@ -87,6 +88,12 @@ const showMobileMenu = () => {
     });
   };
 
+  const closeDropdownInner = () => {
+    dropdownInner.forEach(item => {
+      item.classList.remove('visible');
+    });
+  };
+
   burger.addEventListener('click', () => {
     leftMenu.classList.toggle('show');
     closeDropdown();
@@ -97,18 +104,23 @@ const showMobileMenu = () => {
     console.log(target);
     if(target.closest('.dropdown-arrow')) {
       const dropdown = target.closest('.dropdown');
-      if (dropdown) {
-        dropdown.classList.toggle('active');
+      if(dropdown.classList.contains('active')) {
+        event.target.classList.remove('active');
+      } else {
+        closeDropdown();
+      }
+      dropdown.classList.toggle('active');
+      changeArrow(event);
+    } else if(target.closest('.dropdown-inner-arrow')) {
+        const dropdownInner = target.closest('.dropdown-inner');
+        if(dropdownInner.classList.contains('visible')) {
+          event.target.classList.remove('visible');
+      } else {
+        closeDropdownInner();
+      }
+        dropdownInner.classList.toggle('visible');
         changeArrow(event);
-      } 
-      // if(dropdown.classList.contains('active')) {
-      //   event.target.classList.remove('active');
-      // } else {
-      //   closeDropdown();
-      // }
-      // dropdown.classList.toggle('active');
-      // changeArrow(event);
-    } 
+      }
   });
 }
 
