@@ -70,17 +70,15 @@ const showMobileMenu = () => {
   const burger = document.getElementById('burger');
   const leftMenu = document.querySelector('.left-menu');
   const dropDown = document.querySelectorAll('.dropdown');
-  const dropdownInner = document.querySelectorAll('.dropdown-inner')
-
-  const changeArrow = e => {
-    if(e.target.closest('.fa-angle-down')) {
-      e.target.classList.remove('fa-angle-down');
-      e.target.classList.add('fa-angle-up');
-    } else {
-      e.target.classList.add('fa-angle-down');
-      e.target.classList.remove('fa-angle-up');
-    }
-  }
+  const dropdownInner = document.querySelectorAll('.dropdown-inner');
+  const dropdownArrow = document.querySelectorAll('.dropdown-arrow');
+  const dropdownInnerArrow = document.querySelectorAll('.dropdown-inner-arrow');
+  
+  const closeArrow = () => {
+    dropdownArrow.forEach(item => {
+      item.classList.remove('active');
+    });
+  };
 
   const closeDropdown = () => {
     dropDown.forEach(item => {
@@ -94,9 +92,19 @@ const showMobileMenu = () => {
     });
   };
 
+  const closeInnerArrow = () => {
+    dropdownInnerArrow.forEach(item => {
+      item.classList.remove('visible');
+    });
+  };
+
   burger.addEventListener('click', () => {
     leftMenu.classList.toggle('show');
     closeDropdown();
+    closeDropdown();
+    closeArrow();
+    closeDropdownInner();
+    closeInnerArrow();
   });
 
   leftMenu.addEventListener('click', event => {
@@ -104,22 +112,26 @@ const showMobileMenu = () => {
     console.log(target);
     if(target.closest('.dropdown-arrow')) {
       const dropdown = target.closest('.dropdown');
-      if(dropdown.classList.contains('active')) {
-        event.target.classList.remove('active');
+      const dropdownArrow = target.closest('.dropdown-arrow');
+      if(dropdown.classList.contains('active') && dropdownArrow.classList.contains('active')) {
+        console.log();
       } else {
         closeDropdown();
+        closeArrow();
       }
       dropdown.classList.toggle('active');
-      changeArrow(event);
+      dropdownArrow.classList.toggle('active');
     } else if(target.closest('.dropdown-inner-arrow')) {
-        const dropdownInner = target.closest('.dropdown-inner');
-        if(dropdownInner.classList.contains('visible')) {
-          event.target.classList.remove('visible');
+      const dropdownInner = target.closest('.dropdown-inner');
+      const dropdownInnerArrow = target.closest('.dropdown-inner-arrow');
+      if(dropdownInner.classList.contains('visible') && dropdownInnerArrow.classList.contains('visible')) {
+        console.log();
       } else {
         closeDropdownInner();
+        closeInnerArrow();
       }
         dropdownInner.classList.toggle('visible');
-        changeArrow(event);
+        dropdownInnerArrow.classList.toggle('visible');
       }
   });
 }

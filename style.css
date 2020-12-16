@@ -334,35 +334,55 @@ nav {
   .dropdown-arrow {
     display: inline-block;
     position: absolute;
-    right: 15px;
-    top: -5px;
+    right: 10%;
+    top: 12px;
+    height: 15px;
+    width: 1px;
+    background-color: #fff;
+  }
+
+  .dropdown-arrow:after {
+    font-family: FontAwesome;
+    content: "\f107";
+    transition: all .4s;
+    position: absolute;
+    top: -12px;
+    font-size: 26px;
+    padding-left: 15px;
+  }
+
+  .dropdown-arrow.active:after {
+    font-family: FontAwesome;
+    content: '\f106';
+    transition: all .4s;
+    padding-right: 5px;
   }
 
   .dropdown-inner-arrow {
     display: inline-block;
     position: absolute;
-    right: 15px;
-    top: -5px;
-  }
-
-  .dropdown-inner-arrow:before {
-    content: '';
+    right: 7.4%;
+    top: 12px;
     height: 15px;
     width: 1px;
     background-color: #fff;
-    display: inline-block;
   }
 
-  .dropdown-arrow:before {
-    content: '';
-    height: 15px;
-    width: 1px;
-    background-color: #fff;
-    display: inline-block;
+  .dropdown-inner-arrow:after {
+    font-family: FontAwesome;
+    content: "\f107";
+    transition: all .4s;
+    position: absolute;
+    top: -9px;
+    font-size: 26px;
+    padding-left: 15px;
   }
 
-  .dropdown-arrow-item {
-    right: -5px;
+  .dropdown-inner-arrow.visible:after {
+    font-family: FontAwesome;
+    content: '\f106';
+    transition: all .4s;
+    padding-right: 5px;
   }
 
 }
