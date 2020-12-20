@@ -113,9 +113,7 @@ const showMobileMenu = () => {
     if(target.closest('.dropdown-arrow')) {
       const dropdown = target.closest('.dropdown');
       const dropdownArrow = target.closest('.dropdown-arrow');
-      if(dropdown.classList.contains('active') && dropdownArrow.classList.contains('active')) {
-        console.log();
-      } else {
+      if(!dropdown.classList.contains('active') && !dropdownArrow.classList.contains('active')) {
         closeDropdown();
         closeArrow();
       }
@@ -124,14 +122,12 @@ const showMobileMenu = () => {
     } else if(target.closest('.dropdown-inner-arrow')) {
       const dropdownInner = target.closest('.dropdown-inner');
       const dropdownInnerArrow = target.closest('.dropdown-inner-arrow');
-      if(dropdownInner.classList.contains('visible') && dropdownInnerArrow.classList.contains('visible')) {
-        console.log();
-      } else {
+      if(!dropdownInner.classList.contains('visible') && !dropdownInnerArrow.classList.contains('visible')) {
         closeDropdownInner();
         closeInnerArrow();
       }
-        dropdownInner.classList.toggle('visible');
-        dropdownInnerArrow.classList.toggle('visible');
+      dropdownInner.classList.toggle('visible');
+      dropdownInnerArrow.classList.toggle('visible');
       }
   });
 }
